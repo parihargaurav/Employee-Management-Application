@@ -104,118 +104,238 @@ function AddEmployee({ showModal, setShowModal, fetchEmployees, employeeObj }) {
     resetEmployeeStates();
   };
 
+const modalStyle = {
+  display: showModal ? "block" : "none",
+  backgroundColor: 'rgba(255, 192, 203, 0.5)'
+};
+
+const modalDialogStyle = {
+  maxWidth: '600px',
+  margin: '1.75rem auto'
+};
+
+const modalContentStyle = {
+  background: 'linear-gradient(to bottom, #fff5f7, #ffffff)',
+  border: '3px solid #ffc0cb',
+  borderRadius: '15px',
+  boxShadow: '0 10px 30px rgba(255, 192, 203, 0.4)'
+};
+
+const modalHeaderStyle = {
+  background: 'linear-gradient(135deg, #ffc0cb 0%, #ff99b3 100%)',
+  color: '#2d6ba1',
+  borderBottom: '2px solid #ff99b3',
+  borderRadius: '12px 12px 0 0',
+  padding: '1.2rem 1.5rem'
+};
+
+const modalTitleStyle = {
+  fontWeight: 'bold',
+  fontSize: '1.5rem',
+  margin: 0
+};
+
+const modalBodyStyle = {
+  padding: '2rem 1.5rem'
+};
+
+const formLabelStyle = {
+  color: '#2d6ba1',
+  fontWeight: '600',
+  marginBottom: '0.5rem'
+};
+
+const formControlStyle = {
+  border: '2px solid #ffc0cb',
+  borderRadius: '8px',
+  transition: 'all 0.3s ease'
+};
+
+const submitButtonStyle = {
+  background: 'linear-gradient(135deg, #2d6ba1 0%, #1e4d7b 100%)',
+  border: 'none',
+  padding: '0.7rem 2rem',
+  fontWeight: '600',
+  borderRadius: '8px',
+  boxShadow: '0 4px 8px rgba(45, 107, 161, 0.3)',
+  transition: 'all 0.3s ease',
+  color: 'white',
+  cursor: 'pointer'
+};
+
+
+
+
   /* ---------------------- JSX Rendering (Modal + Form) ---------------------- */
   return (
-    // Bootstrap modal (conditionally displayed)
-    <div
-      className={`modal ${showModal ? "d-block" : ""}`}
-      tabIndex="-1"
-      role="dialog"
-      style={{ display: showModal ? "block" : "none" }}
-    >
-      <div className="modal-dialog" role="document">
-        <div className="modal-content" style={{ backgroundColor: "#7bb7efff" }}>
-          {" "}
-          {/* Modal Header */}
-          <div className="modal-header">
-            <h5 className="modal-title">
-              {updateMode ? "Update Employee" : "Add Employee"}
-            </h5>
-            <button
-              type="button"
-              className="btn-close"
-              onClick={handleModalClose}
-            ></button>
-          </div>
-          {/* Modal Body - Contains Form */}
-          <div className="modal-body">
-            <form onSubmit={handleAddEmployee}>
-              {/* Name */}
-              <div className="mb-3">
-                <label className="form-label">Name</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  name="name"
-                  value={employee.name}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
+  <div
+    className={`modal ${showModal ? "d-block" : ""}`}
+    tabIndex="-1"
+    role="dialog"
+    style={modalStyle}
+  >
+    <div className="modal-dialog" role="document" style={modalDialogStyle}>
+      <div className="modal-content" style={modalContentStyle}>
+        {/* Modal Header */}
+        <div className="modal-header" style={modalHeaderStyle}>
+          <h5 className="modal-title" style={modalTitleStyle}>
+            {updateMode ? "Update Employee" : "Add Employee"}
+          </h5>
+          <button
+            type="button"
+            className="btn-close"
+            onClick={handleModalClose}
+            style={{ filter: 'invert(1)' }}
+          ></button>
+        </div>
 
-              {/* Email */}
-              <div className="mb-3">
-                <label className="form-label">Email</label>
-                <input
-                  type="email"
-                  className="form-control"
-                  name="email"
-                  value={employee.email}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
+        {/* Modal Body */}
+        <div className="modal-body" style={modalBodyStyle}>
+          <form onSubmit={handleAddEmployee}>
+            {/* Name */}
+            <div className="mb-3">
+              <label className="form-label" style={formLabelStyle}>Name</label>
+              <input
+                type="text"
+                className="form-control"
+                style={formControlStyle}
+                name="name"
+                value={employee.name}
+                onChange={handleChange}
+                onFocus={(e) => {
+                  e.target.style.borderColor = '#ff99b3';
+                  e.target.style.boxShadow = '0 0 0 0.2rem rgba(255, 192, 203, 0.25)';
+                }}
+                onBlur={(e) => {
+                  e.target.style.borderColor = '#ffc0cb';
+                  e.target.style.boxShadow = 'none';
+                }}
+                required
+              />
+            </div>
 
-              {/* Phone */}
-              <div className="mb-3">
-                <label className="form-label">Phone</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  name="phone"
-                  value={employee.phone}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
+            {/* Email */}
+            <div className="mb-3">
+              <label className="form-label" style={formLabelStyle}>Email</label>
+              <input
+                type="email"
+                className="form-control"
+                style={formControlStyle}
+                name="email"
+                value={employee.email}
+                onChange={handleChange}
+                onFocus={(e) => {
+                  e.target.style.borderColor = '#ff99b3';
+                  e.target.style.boxShadow = '0 0 0 0.2rem rgba(255, 192, 203, 0.25)';
+                }}
+                onBlur={(e) => {
+                  e.target.style.borderColor = '#ffc0cb';
+                  e.target.style.boxShadow = 'none';
+                }}
+                required
+              />
+            </div>
 
-              {/* Department */}
-              <div className="mb-3">
-                <label className="form-label">Department</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  name="department"
-                  value={employee.department}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
+            {/* Phone */}
+            <div className="mb-3">
+              <label className="form-label" style={formLabelStyle}>Phone</label>
+              <input
+                type="text"
+                className="form-control"
+                style={formControlStyle}
+                name="phone"
+                value={employee.phone}
+                onChange={handleChange}
+                onFocus={(e) => {
+                  e.target.style.borderColor = '#ff99b3';
+                  e.target.style.boxShadow = '0 0 0 0.2rem rgba(255, 192, 203, 0.25)';
+                }}
+                onBlur={(e) => {
+                  e.target.style.borderColor = '#ffc0cb';
+                  e.target.style.boxShadow = 'none';
+                }}
+                required
+              />
+            </div>
 
-              {/* Salary */}
-              <div className="mb-3">
-                <label className="form-label">Salary</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  name="salary"
-                  value={employee.salary}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
+            {/* Department */}
+            <div className="mb-3">
+              <label className="form-label" style={formLabelStyle}>Department</label>
+              <input
+                type="text"
+                className="form-control"
+                style={formControlStyle}
+                name="department"
+                value={employee.department}
+                onChange={handleChange}
+                onFocus={(e) => {
+                  e.target.style.borderColor = '#ff99b3';
+                  e.target.style.boxShadow = '0 0 0 0.2rem rgba(255, 192, 203, 0.25)';
+                }}
+                onBlur={(e) => {
+                  e.target.style.borderColor = '#ffc0cb';
+                  e.target.style.boxShadow = 'none';
+                }}
+                required
+              />
+            </div>
 
-              {/* Profile Image Upload */}
-              <div className="mb-3">
-                <label className="form-label">Profile Image</label>
-                <input
-                  type="file"
-                  className="form-control"
-                  name="profileImage"
-                  onChange={handleFileChange}
-                />
-              </div>
+            {/* Salary */}
+            <div className="mb-3">
+              <label className="form-label" style={formLabelStyle}>Salary</label>
+              <input
+                type="text"
+                className="form-control"
+                style={formControlStyle}
+                name="salary"
+                value={employee.salary}
+                onChange={handleChange}
+                onFocus={(e) => {
+                  e.target.style.borderColor = '#ff99b3';
+                  e.target.style.boxShadow = '0 0 0 0.2rem rgba(255, 192, 203, 0.25)';
+                }}
+                onBlur={(e) => {
+                  e.target.style.borderColor = '#ffc0cb';
+                  e.target.style.boxShadow = 'none';
+                }}
+                required
+              />
+            </div>
 
-              {/* Submit Button */}
-              <button type="submit" className="btn btn-primary">
-                {updateMode ? "Update" : "Save"}
-              </button>
-            </form>
-          </div>
+            {/* Profile Image Upload */}
+            <div className="mb-3">
+              <label className="form-label" style={formLabelStyle}>Profile Image</label>
+              <input
+                type="file"
+                className="form-control"
+                style={formControlStyle}
+                name="profileImage"
+                onChange={handleFileChange}
+              />
+            </div>
+
+            {/* Submit Button */}
+            <button 
+              type="submit" 
+              className="btn btn-primary"
+              style={submitButtonStyle}
+              onMouseEnter={(e) => {
+                e.target.style.transform = 'translateY(-2px)';
+                e.target.style.boxShadow = '0 6px 12px rgba(45, 107, 161, 0.4)';
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.transform = 'translateY(0)';
+                e.target.style.boxShadow = '0 4px 8px rgba(45, 107, 161, 0.3)';
+              }}
+            >
+              {updateMode ? "Update" : "Save"}
+            </button>
+          </form>
         </div>
       </div>
     </div>
-  );
+  </div>
+);
 }
 
 export default AddEmployee;
