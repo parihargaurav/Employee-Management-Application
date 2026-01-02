@@ -1,5 +1,5 @@
 // Importing React and useful hooks
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 // Importing React Router hooks
 // - useNavigate: to navigate programmatically
