@@ -1,5 +1,5 @@
 // Import necessary dependencies
-import  { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { notify } from "../utils"; // For showing toast notifications
 import { CreateEmployee, UpdateEmployeeById } from "../api"; // API functions for CRUD operations
 
@@ -70,7 +70,7 @@ function AddEmployee({ showModal, setShowModal, fetchEmployees, employeeObj }) {
         ? await UpdateEmployeeById(employee, employee._id)
         : await CreateEmployee(employee);
 
-      console.log("create OR update ", success, message);
+      // console.log("create OR update ", success, message);
 
       // Show notification based on success/failure
       if (success) {
@@ -114,7 +114,8 @@ function AddEmployee({ showModal, setShowModal, fetchEmployees, employeeObj }) {
       style={{ display: showModal ? "block" : "none" }}
     >
       <div className="modal-dialog" role="document">
-        <div className="modal-content">
+        <div className="modal-content" style={{ backgroundColor: "#7bb7efff" }}>
+          {" "}
           {/* Modal Header */}
           <div className="modal-header">
             <h5 className="modal-title">
@@ -126,7 +127,6 @@ function AddEmployee({ showModal, setShowModal, fetchEmployees, employeeObj }) {
               onClick={handleModalClose}
             ></button>
           </div>
-
           {/* Modal Body - Contains Form */}
           <div className="modal-body">
             <form onSubmit={handleAddEmployee}>
