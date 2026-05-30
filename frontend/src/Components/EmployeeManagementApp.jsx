@@ -63,7 +63,7 @@ const EmployeeManagementApp = () => {
     alignItems: 'center',
     width: '100%',
     padding: '2rem',
-    background: 'linear-gradient(135deg, #93eb80ff 0%, #ffb3d9 100%)',
+    backgroundColor: 'var(--bg-color)',
     minHeight: '100vh'
   };
 
@@ -71,9 +71,9 @@ const EmployeeManagementApp = () => {
     fontStyle: 'italic',
     fontWeight: 'bold',
     fontSize: '2.5rem',
-    color: '#2d6ba1',
+    color: 'var(--text-color)',
     marginBottom: '2rem',
-    textShadow: '2px 2px 4px rgba(0, 0, 0, 0.1)',
+    textShadow: '2px 2px 4px rgba(0, 0, 0, 0.08)',
     textAlign: 'center'
   };
 
@@ -86,11 +86,11 @@ const EmployeeManagementApp = () => {
   const mainCardStyle = {
     width: '90%',
     maxWidth: '1200px',
-    background: 'linear-gradient(to bottom, #ffffff, #f8f9fa)',
-    border: '2px solid #2d6ba1',
+    backgroundColor: 'var(--card-bg)',
+    border: '2px solid var(--card-border)',
     borderRadius: '15px',
     padding: '2rem',
-    boxShadow: '0 8px 24px rgba(45, 107, 161, 0.3)'
+    boxShadow: 'var(--card-shadow)'
   };
 
   const actionBarStyle = {
@@ -109,17 +109,19 @@ const EmployeeManagementApp = () => {
     boxShadow: '0 4px 8px rgba(40, 167, 69, 0.3)',
     transition: 'all 0.3s ease',
     border: 'none',
-    background: '#28a745',
-    color: 'white',
+    background: 'var(--button-bg)',
+    color: 'var(--button-color)',
     cursor: 'pointer'
   };
 
   const searchInputStyle = {
     maxWidth: '400px',
-    border: '2px solid #2d6ba1',
+    border: '2px solid var(--input-border)',
     borderRadius: '8px',
     padding: '0.6rem 1rem',
-    transition: 'all 0.3s ease'
+    transition: 'all 0.3s ease',
+    backgroundColor: 'var(--input-bg)',
+    color: 'var(--input-text)'
   };
 
   // -------------------- COMPONENT JSX --------------------
